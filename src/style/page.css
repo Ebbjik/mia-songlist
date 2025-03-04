@@ -1,0 +1,78 @@
+@font-face {
+    font-family: '站酷快乐体';
+    src: url('/站酷快乐体.ttf') format('truetype');
+}
+
+
+.desktop {
+    height: 100%;
+    width: 100%;
+    padding: 40px 30px 30px;
+    box-sizing: border-box;
+    display: flex;
+    gap: 30px;
+    background-image: url('/mia-background-2k.jpeg');
+    background-size: cover;
+    background-position: center;
+
+
+    .introduction {
+        width: 300px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .right {
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+        flex: 1;
+
+
+
+        .selector {
+            height: 80px;
+        }
+
+        .song_list {
+            flex: 1;
+        }
+    }
+}
+
+.introduction,
+.selector,
+.song_list {
+    border-radius: 30px;
+    background-color: hsla(0, 0%, 100%, .53);
+}
+
+.introduction {
+    padding: 20px 30px;
+    box-sizing: border-box;
+    text-align: center;
+    gap: 30px;
+
+    .mia-head {
+        height: auto;
+        width: 200px;
+        display: block;
+        margin: 0 auto;
+        border-radius: 50%;
+    }
+
+    .introduce {
+        font-size: 33px;
+        font-family: '站酷快乐体', sans-serif;
+        color: slategray;
+    }
+
+    .total {
+        display: block;
+        font-size: 80px;
+        font-family: '站酷快乐体', sans-serif;
+        color: slategray;
+        font-weight: 700;
+    }
+
+}

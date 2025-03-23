@@ -1,0 +1,149 @@
+@font-face {
+    font-family: '站酷快乐体';
+    src: url('/站酷快乐体.ttf') format('truetype');
+}
+
+.main-base {
+    height: 100%;
+    width: 100%;
+    padding: 40px 30px 30px;
+    box-sizing: border-box;
+    display: flex;
+    gap: 30px;
+    background-size: cover;
+    background-position: center;
+    overflow-y: auto;
+}
+
+/* 手机端样式 */
+@media screen and (max-width: 768px) {
+    .container {
+        .main-base;
+        padding: 15px;
+        gap: 13px;
+        flex-direction: column;
+        background-image: url('/mia-background-mobile.png');
+
+
+        .profile {
+            width: auto;
+            display: flex;
+            padding: 20px 30px;
+            box-sizing: border-box;
+            text-align: center;
+            align-items: center;
+            gap: 30px;
+
+            .profile__avatar {
+                height: 100px;
+                width: 100px;
+                display: block;
+                margin: 0 auto;
+                border-radius: 50%;
+            }
+
+            .profile__info {
+                display: flex;
+                flex-direction: column;
+
+                .profile__text {
+                    font-size: 17.5px;
+                    font-family: '站酷快乐体', sans-serif;
+                    color: slategray;
+                }
+
+                .profile__count {
+                    display: block;
+                    font-size: 33px;
+                    font-family: '站酷快乐体', sans-serif;
+                    color: slategray;
+                    font-weight: 700;
+                }
+
+            }
+
+        }
+
+        .right {
+            display: flex;
+            flex-direction: column;
+            gap: 13px;
+            flex: 1;
+
+            .song-selector {
+                height: 80px;
+            }
+
+            .song-list {
+                flex: 1;
+            }
+        }
+    }
+}
+
+/* 电脑端样式 */
+@media screen and (min-width : 768px) {
+    .container {
+        .main-base;
+        background-image: url('/mia-background-2k.jpeg');
+
+
+        .profile {
+            width: 300px;
+            display: flex;
+            flex-direction: column;
+            padding: 20px 30px;
+            box-sizing: border-box;
+            text-align: center;
+            gap: 30px;
+
+            .profile__avatar {
+                height: auto;
+                width: 200px;
+                display: block;
+                margin: 0 auto;
+                border-radius: 50%;
+            }
+
+            .profile__text {
+                font-size: 33px;
+                font-family: '站酷快乐体', sans-serif;
+                color: slategray;
+            }
+
+            .profile__count {
+                display: block;
+                font-size: 80px;
+                font-family: '站酷快乐体', sans-serif;
+                color: slategray;
+                font-weight: 700;
+            }
+
+        }
+
+        .right {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            flex: 1;
+
+            .song-selector {
+                height: 80px;
+            }
+
+            .song-list {
+                flex: 1;
+            }
+        }
+    }
+
+}
+
+
+
+.profile,
+.song-selector,
+.song-list {
+    border-radius: 30px;
+    background-color: hsla(0, 0%, 100%, .53);
+}

@@ -12,8 +12,16 @@ const data = JSON.parse(fs.readFileSync(filePath, 'utf-8'));
 
 // 遍历每首歌
 
-Object.keys(data).forEach(category => {
+for (const category of Object.keys(data)) {
     console.log(`Category: ${category}`);
+
+
+    // 删除SC点歌单
+    if (category === "SC点歌单") {
+        delete data[category];
+        continue;
+    }
+
     data[category].forEach((song) => {
             // 检查歌名是否以【**SC】结尾
             const match = song["歌名"] && song["歌名"].match(/【(\d+)SC】$/);
@@ -25,7 +33,7 @@ Object.keys(data).forEach(category => {
                 console.log(song)
             }
     });
-});
+};
 
 // 将更新后的数据写回songlist.json文件
 fs.writeFileSync(filePath, JSON.stringify(data, null, 2), 'utf-8');

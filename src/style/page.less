@@ -1,6 +1,8 @@
 @font-face {
     font-family: '站酷快乐体';
     src: url('/站酷快乐体.ttf') format('truetype');
+    font-display: swap;
+    /* 添加这一行 */
 }
 
 .main-base {
@@ -76,6 +78,65 @@
 
             .song-list {
                 flex: 1;
+                padding: 20px 2cqh;
+                font-size: 20px;
+                justify-items: center;
+                overflow: hidden;
+
+                table {
+                    width: 100%;
+                    height: 100%;
+                    display: flex;
+                    flex-direction: column;
+
+                    thead {
+                        height: 45px;
+                        border-radius: 10px;
+                        background-color: hsla(0, 0%, 100%, .53);
+                        align-items: center;
+                        justify-items: center;
+
+                        tr {
+                            display: flex;
+                            width: 100%;
+
+                            th {
+                                font-family: '站酷快乐体', sans-serif;
+                                text-align: left;
+                                flex: 1;
+                                padding: 10px;
+                                font-size: 20px;
+                                font-weight: 500;
+                            }
+                        }
+                    }
+
+                    tbody {
+                        flex: 1;
+                        overflow-y: auto;
+
+                        tr {
+                            height: calc(100%/20 -5px);
+                            background-color: hsla(0, 0%, 100%, 0.288);
+                            border-radius: 10px;
+                            margin-top: 5px;
+                            display: flex;
+                            justify-content: space-between;
+                            width: 100%;
+
+                            td {
+                                font-family: '站酷快乐体', sans-serif;
+                                flex: 1;
+                                text-align: left;
+                                padding: 10px;
+                                font-size: 15px;
+                                font-weight: 550;
+                                // color: rgb(89, 165, 165);
+                            }
+
+                        }
+                    }
+                }
             }
         }
     }
@@ -133,6 +194,64 @@
 
             .song-list {
                 flex: 1;
+                padding: 20px 40px;
+                font-size: 20px;
+                justify-items: center;
+                overflow: hidden;
+
+                table {
+                    width: 100%;
+                    height: 100%;
+                    display: flex;
+                    flex-direction: column;
+
+                    thead {
+                        height: 45px;
+                        border-radius: 10px;
+                        background-color: hsla(0, 0%, 100%, .53);
+                        align-items: center;
+                        justify-items: center;
+
+                        tr {
+                            display: flex;
+                            width: 100%;
+
+                            th {
+                                font-family: '站酷快乐体', sans-serif;
+                                text-align: left;
+                                flex: 1;
+                                padding: 10px;
+                                font-size: 23px;
+                                font-weight: 400;
+                            }
+                        }
+                    }
+
+                    tbody {
+                        flex: 1;
+                        overflow-y: auto;
+
+                        tr {
+                            height: calc(100%/20 -5px);
+                            background-color: hsla(0, 0%, 100%, 0.288);
+                            border-radius: 10px;
+                            margin-top: 5px;
+                            display: flex;
+                            justify-content: space-between;
+                            width: 100%;
+
+                            td {
+                                font-family: '站酷快乐体', sans-serif;
+                                flex: 1;
+                                text-align: left;
+                                padding: 10px;
+                                font-size: 24px;
+                                font-weight: 550;
+                            }
+
+                        }
+                    }
+                }
             }
         }
     }

@@ -47,7 +47,8 @@ export default ts.config(
         directives: { spaces: true }
       }],
       'svelte/no-spaces-around-equal-signs-in-attribute': 'error',
-      'svelte/valid-compile': 'error'
+      'svelte/valid-compile': 'error',
+      'no-unused-vars': ['error', { vars: 'all', args: 'after-used', ignoreRestSiblings: false }]
     },
     languageOptions: {
       parserOptions: {

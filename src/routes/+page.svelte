@@ -4,6 +4,8 @@
     const songlist = data.props.data;
 
     const countnum = data.props.countnum;
+
+    import { a } from './a.js';
 </script>
 
 <svelte:head>
@@ -32,7 +34,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {#each songlist as song (song.歌名 + song["歌手/翻唱版本"])}
+                    {#each songlist as song (song.歌名 + song['歌手/翻唱版本'])}
                         <tr>
                             <td>{song.歌名}</td>
                             <td>{song.语言}</td>

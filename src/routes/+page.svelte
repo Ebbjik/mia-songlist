@@ -1,15 +1,20 @@
 <script>
-  let { data } = $props();
+    let { data } = $props();
 
-  const songlist = data.props.data;
+    const songlist = data.props.data;
 
     const countnum = data.props.countnum;
 
-    import { a } from './a.js';
+    let selectedSong = $state(); // Change this line
+
+    // 使用 $effect 代替 $:
+    $effect(() => {
+        console.log(selectedSong);
+    });
 </script>
 
 <svelte:head>
-  <title>mia的歌单</title>
+    <title>mia的歌单</title>
 </svelte:head>
 
 <main class="container">
@@ -24,7 +29,13 @@
         </div>
     </div>
     <div class="right">
-        <div class="song-selector">这是选择器部分</div>
+        <div class="song-selector">
+            <select id="song-select" bind:value={selectedSong}>
+                {#each songlist as song}
+                    <option value={song.歌名}>{song.歌名}</option>
+                {/each}
+            </select>
+        </div>
         <div class="song-list">
             <table>
                 <thead>
@@ -44,5 +55,4 @@
             </table>
         </div>
     </div>
-  </div>
 </main>

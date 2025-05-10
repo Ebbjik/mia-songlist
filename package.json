@@ -33,6 +33,10 @@
 		"vite": "^6.0.0"
 	},
 	"dependencies": {
-		"less": "^4.2.2"
+		"eslint-config-prettier": "^10.1.5",
+		"eslint-plugin-prettier": "^5.4.0",
+		"eslint-plugin-svelte3": "^4.0.0",
+		"less": "^4.2.2",
+		"prettier": "^3.5.3"
 	}
 }

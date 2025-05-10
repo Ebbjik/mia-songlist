@@ -23,7 +23,32 @@ export default ts.config(
   {
     files: ["**/*.svelte", "**/*.svelte.ts", "**/*.svelte.js"],
     ignores: ["eslint.config.js", "svelte.config.js"],
-
+    rules: {
+      'svelte/indent': ['error', {
+        indent: 4,
+        indentScript: true,
+        switchCase: 1,
+        alignAttributesVertically: true
+      }],
+      'svelte/html-closing-bracket-newline': ['error', {
+        singleline: 'never',
+        multiline: 'always'
+      }],
+      'svelte/html-indent': ['error', {
+        indent: 4,
+        alignAttributesVertically: true
+      }],
+      'svelte/html-quotes': ['error', {
+        prefer: 'double',
+        allow: 'single'
+      }],
+      'svelte/mustache-spacing': ['error', {
+        textExpressions: { spaces: true },
+        directives: { spaces: true }
+      }],
+      'svelte/no-spaces-around-equal-signs-in-attribute': 'error',
+      'svelte/valid-compile': 'error'
+    },
     languageOptions: {
       parserOptions: {
         projectService: true,

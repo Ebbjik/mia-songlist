@@ -1,11 +1,41 @@
-<script>
+<script lang="ts">
+    import Select from '../components/Select.svelte';
+
     let { data } = $props();
 
-    const songlist = data.props.data;
+    const songlist = data.props.data as Song[];
 
     const countnum = data.props.countnum;
 
-    let selectedSong = $state(); // Change this line
+    let selectedSong = $state();
+    let selectedOption = '';
+
+    // 定义 Song 接口
+    interface Song {
+        歌名: string;
+        语言: string;
+        // 其他属性可以根据需要添加
+    }
+
+    // 定义 Option 接口
+    interface Option {
+        value: string;
+        label: string;
+    }
+
+    // 提取所有语言作为选项
+    const languageOptions: Option[] = [...new Set(songlist.map((song: Song) => song.语言))].map(
+        lang => ({
+            value: lang,
+            label: lang,
+        })
+    );
+
+    // 处理选项变化的函数
+    function handleOptionChange(value: string) {
+        selectedOption = value; // 更新选中的选项
+        console.log('选中的语言:', selectedOption); // 可以在这里添加其他逻辑
+    }
 
     // 使用 $effect 代替 $:
     $effect(() => {
@@ -30,11 +60,7 @@
     </div>
     <div class="right">
         <div class="song-selector">
-            <select id="song-select" bind:value={selectedSong}>
-                {#each songlist as song}
-                    <option value={song.歌名}>{song.歌名}</option>
-                {/each}
-            </select>
+            <Select options={languageOptions} onChange={handleOptionChange}></Select>
         </div>
         <div class="song-list">
             <table>

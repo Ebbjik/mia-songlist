@@ -60,7 +60,22 @@
     </div>
     <div class="right">
         <div class="song-selector">
-            <Select options={languageOptions} onChange={handleOptionChange}></Select>
+            <div>
+                <span>nihao:</span>
+                <Select options={languageOptions} onChange={handleOptionChange}></Select>
+            </div>
+            <div>
+                <span>nihao:</span>
+                <Select options={languageOptions} onChange={handleOptionChange}></Select>
+            </div>
+            <div>
+                <span>nihao:</span>
+                <Select options={languageOptions} onChange={handleOptionChange}></Select>
+            </div>
+            <div>
+                <span>nihao:</span>
+                <Select options={languageOptions} onChange={handleOptionChange}></Select>
+            </div>
         </div>
         <div class="song-list">
             <table>

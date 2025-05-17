@@ -73,7 +73,11 @@
             flex: 1;
 
             .song-selector {
-                height: 80px;
+                // height: 80px;
+                display: flex;
+                gap: 10px;
+                padding: 10px 20px;
+                flex-wrap: wrap;
             }
 
             .song-list {
@@ -189,15 +193,17 @@
             flex: 1;
 
             .song-selector {
-                height: 80px;
+                gap: 20px;
+                display: flex;
+                padding: 10px 20px;
             }
 
             .song-list {
                 flex: 1;
+                min-height: 0;
                 padding: 20px 40px;
                 font-size: 20px;
                 justify-items: center;
-                overflow: hidden;
 
                 table {
                     width: 100%;

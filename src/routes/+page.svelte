@@ -14,7 +14,8 @@
     interface Song {
         歌名: string;
         语言: string;
-        // 其他属性可以根据需要添加
+        SC档位: string;
+        '歌手/翻唱版本': string; // 添加这一行
     }
 
     // 定义 Option 接口
@@ -83,6 +84,7 @@
                     <tr>
                         <th>歌名</th>
                         <th>语言</th>
+                        <th class="sc">SC档位</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -90,6 +92,7 @@
                         <tr>
                             <td>{song.歌名}</td>
                             <td>{song.语言}</td>
+                            <td class="sc">{song.SC档位}</td>
                         </tr>
                     {/each}
                 </tbody>

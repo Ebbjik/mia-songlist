@@ -32,6 +32,8 @@ for (const category of Object.keys(data)) {
             // 删除歌名后面的【】部分
             song["歌名"] = song["歌名"].replace(/【\d+SC】$/, '');
             console.log(song)
+        } else {
+            song["SC档位"] = '免费';
         }
 
         // 检查并删除n字段
@@ -47,7 +49,11 @@ for (const category of Object.keys(data)) {
     new_list.push(...data[category]);
 };
 
+// 去重
+const uniqueSongs = Array.from(new Set(new_list.map(song => `${song["歌名"]}-${song["歌手/翻唱版本"]}`)))
+    .map(uniqueKey => new_list.find(song => `${song["歌名"]}-${song["歌手/翻唱版本"]}` === uniqueKey));
+
 // 将更新后的数据写回songlist.json文件
-fs.writeFileSync(filePath, JSON.stringify(new_list, null, 2), 'utf-8');
+fs.writeFileSync(filePath, JSON.stringify(uniqueSongs, null, 2), 'utf-8');
 
 console.log("更新完成");

@@ -78,6 +78,19 @@
                 gap: 10px;
                 padding: 10px 20px;
                 flex-wrap: wrap;
+
+                Input {
+                    width: 100%;
+
+                    :focus {
+                        border: none;
+                        outline: none;
+                    }
+                }
+
+                Select {
+                    flex: 1;
+                }
             }
 
             .song-list {
@@ -115,6 +128,14 @@
                                 &.sc {
                                     display: none;
                                 }
+
+                                &.name {
+                                    flex: 2
+                                }
+
+                                &.language {
+                                    flex: 1
+                                }
                             }
                         }
                     }
@@ -143,6 +164,14 @@
 
                                 &.sc {
                                     display: none;
+                                }
+
+                                &.name {
+                                    flex: 2
+                                }
+
+                                &.language {
+                                    flex: 1
                                 }
                             }
 
@@ -204,6 +233,13 @@
                 gap: 20px;
                 display: flex;
                 padding: 10px 20px;
+
+
+                Input {
+                    &:focus {
+                        outline: none;
+                    }
+                }
             }
 
             .song-list {
@@ -237,6 +273,18 @@
                                 padding: 10px;
                                 font-size: 23px;
                                 font-weight: 400;
+
+                                &.sc {
+                                    flex: 1
+                                }
+
+                                &.name {
+                                    flex: 2
+                                }
+
+                                &.language {
+                                    flex: 1
+                                }
                             }
                         }
                     }
@@ -261,6 +309,18 @@
                                 padding: 10px;
                                 font-size: 24px;
                                 font-weight: 550;
+
+                                &.sc {
+                                    flex: 1
+                                }
+
+                                &.name {
+                                    flex: 2
+                                }
+
+                                &.language {
+                                    flex: 1
+                                }
                             }
 
                         }

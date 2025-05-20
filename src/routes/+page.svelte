@@ -1,14 +1,19 @@
 <script lang="ts">
     import Select from '../components/Select.svelte';
+    import Input from '../components/Input.svelte';
+    import { writable } from 'svelte/store';
+    import Toast from '../components/Toast.svelte'; // 导入 Toast 组件
+    // ... 其他代码 ...
+
+    let showToast = $state(false);
+    let toastMessage = '';
 
     let { data } = $props();
 
     const songlist = data.props.data as Song[];
+    const tablelist = writable<Song[]>(songlist);
 
     const countnum = data.props.countnum;
-
-    let selectedSong = $state();
-    let selectedOption = '';
 
     // 定义 Song 接口
     interface Song {
@@ -24,6 +29,12 @@
         label: string;
     }
 
+    const filter = $state({
+        language: '',
+        SC档位: '',
+        歌名: '',
+    });
+
     // 提取所有语言作为选项
     const languageOptions: Option[] = [...new Set(songlist.map((song: Song) => song.语言))].map(
         lang => ({
@@ -32,16 +43,59 @@
         })
     );
 
-    // 处理选项变化的函数
-    function handleOptionChange(value: string) {
-        selectedOption = value; // 更新选中的选项
-        console.log('选中的语言:', selectedOption); // 可以在这里添加其他逻辑
-    }
+    // 提取所有 SC档位作为选项
+    const scOptions: Option[] = [...new Set(songlist.map((song: Song) => song.SC档位))].map(sc => ({
+        value: sc,
+        label: sc,
+    }));
 
-    // 使用 $effect 代替 $:
     $effect(() => {
-        console.log(selectedSong);
+        console.log($state.snapshot(filter)); // 使用 snapshot() 查看状态快照
+        tablelist.set(
+            songlist.filter(item => {
+                return (
+                    (filter.language === '' || item.语言 === filter.language) &&
+                    (filter.SC档位 === '' || item.SC档位 === filter.SC档位) &&
+                    (filter.歌名 === '' || item.歌名.includes(filter.歌名))
+                );
+            })
+        );
     });
+
+    const copyText = (text: string) => {
+        const textarea = document.createElement('textarea');
+        textarea.value = text;
+        console.log(text);
+        textarea.setAttribute('readonly', '');
+        textarea.style.position = 'absolute';
+        textarea.style.left = '-9999px';
+        document.body.appendChild(textarea);
+        textarea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textarea);
+    };
+
+    const handleclick = (song: Song) => {
+        console.log(song);
+
+        const textToCopy = song.歌名;
+
+        if (!textToCopy) {
+            console.warn('没有要复制的文本');
+            return;
+        }
+
+        // 复制文本
+        copyText(textToCopy);
+
+        // 显示提示
+        showToast = true;
+
+        // 2 秒后隐藏提示
+        setTimeout(() => {
+            showToast = false;
+        }, 2000);
+    };
 </script>
 
 <svelte:head>
@@ -61,37 +115,27 @@
     </div>
     <div class="right">
         <div class="song-selector">
-            <div>
-                <span>nihao:</span>
-                <Select options={languageOptions} onChange={handleOptionChange}></Select>
-            </div>
-            <div>
-                <span>nihao:</span>
-                <Select options={languageOptions} onChange={handleOptionChange}></Select>
-            </div>
-            <div>
-                <span>nihao:</span>
-                <Select options={languageOptions} onChange={handleOptionChange}></Select>
-            </div>
-            <div>
-                <span>nihao:</span>
-                <Select options={languageOptions} onChange={handleOptionChange}></Select>
-            </div>
+            <Input bind:value={filter.歌名} placeholder="请输入歌名"></Input>
+
+            <Select type="语言" bind:selectedOption={filter.language} options={languageOptions}
+            ></Select>
+
+            <Select type="SC档位" bind:selectedOption={filter.SC档位} options={scOptions}></Select>
         </div>
         <div class="song-list">
             <table>
                 <thead>
                     <tr>
-                        <th>歌名</th>
-                        <th>语言</th>
+                        <th class="name">歌名</th>
+                        <th class="language">语言</th>
                         <th class="sc">SC档位</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {#each songlist as song (song.歌名 + song['歌手/翻唱版本'])}
-                        <tr>
-                            <td>{song.歌名}</td>
-                            <td>{song.语言}</td>
+                    {#each $tablelist as song (song.歌名 + song['歌手/翻唱版本'])}
+                        <tr onclick={() => handleclick(song)}>
+                            <td class="name">{song.歌名}</td>
+                            <td class="language">{song.语言}</td>
                             <td class="sc">{song.SC档位}</td>
                         </tr>
                     {/each}
@@ -99,4 +143,5 @@
             </table>
         </div>
     </div>
+    <Toast message={toastMessage} show={showToast} />
 </main>

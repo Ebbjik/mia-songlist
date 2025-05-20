@@ -6,19 +6,11 @@
 
     export let options: Option[] = [];
     export let selectedOption: string = '';
-
-    export let onChange: (value: string) => void; // 新增的回调函数属性
-
-    function handleChange(event: Event) {
-        selectedOption = (event.target as HTMLSelectElement).value;
-        if (onChange) {
-            onChange(selectedOption); // 调用父组件传递的回调函数
-        }
-    }
+    export let type: string = '';
 </script>
 
-<select bind:value={selectedOption} on:change={handleChange}>
-    <option class="option" value="">全部</option>
+<select bind:value={selectedOption}>
+    <option class="option" value="">全部{type}</option>
     {#each options as option}
         <option class="option" value={option.value}>{option.label}</option>
     {/each}
@@ -33,6 +25,7 @@
         font-size: 16px;
         outline: none; /* 去掉聚焦时的默认边框 */
         transition: border-color 0.3s; /* 添加过渡效果 */
+        background-color: hsla(0, 0%, 100%, 0.53);
     }
 
     select:focus {
@@ -40,6 +33,6 @@
     }
 
     .option {
-        background-color: aquamarine;
+        background-color: rgba(218, 138, 184, 0.212);
     }
 </style>

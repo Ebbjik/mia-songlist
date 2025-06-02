@@ -6,7 +6,7 @@
     // ... 其他代码 ...
 
     let showToast = $state(false);
-    let toastMessage = '';
+    let toastMessage = $state('已复制到剪贴板');
 
     let { data } = $props();
 
@@ -64,7 +64,7 @@
 
     const copyText = (text: string) => {
         const textarea = document.createElement('textarea');
-        textarea.value = text;
+        textarea.value = '点歌 ' + text;
         console.log(text);
         textarea.setAttribute('readonly', '');
         textarea.style.position = 'absolute';
@@ -75,8 +75,13 @@
         document.body.removeChild(textarea);
     };
 
+    let timer: NodeJS.Timeout | null = null;
+
     const handleclick = (song: Song) => {
-        console.log(song);
+        showToast = false; // 隐藏之前的提示
+        if (timer) {
+            clearTimeout(timer);
+        }
 
         const textToCopy = song.歌名;
 
@@ -85,6 +90,8 @@
             return;
         }
 
+        toastMessage = `已复制: ${textToCopy}`;
+
         // 复制文本
         copyText(textToCopy);
 
@@ -92,7 +99,10 @@
         showToast = true;
 
         // 2 秒后隐藏提示
-        setTimeout(() => {
+        if (timer) {
+            clearTimeout(timer);
+        }
+        timer = setTimeout(() => {
             showToast = false;
         }, 2000);
     };
